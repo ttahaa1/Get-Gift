@@ -1,0 +1,39 @@
+{
+    "name": "ᔆ ᴾ ᴱ ᴱ ᴰ ™𝓼",
+    "description": " بوت تحكم وجلب الروابط المميز.",
+    "logo": "https://telegra.ph/file/9a475a189b8cbf68f3047.jpg",
+    "keywords": [
+        "telegram",
+        " content",
+        "bot"
+    ],
+    "repository": "ᔆ ᴾ ᴱ ᴱ ᴰ ™𝓼",
+    "website": "",
+    "success_url": "https://t.me/tcrep1",
+    "env": {
+        "API_HASH": {
+            "description": "ادخل  API HASH تجيبه من هنا.telegram.org",
+            "value": ""
+        },
+        "API_ID": {
+            "description": "ادخل API ID تجيبه من هنا.telegram.org",
+            "value": ""
+        },
+        "token": {
+            "description": "توكن بوتك, تجيبه من البوت دا  @BotFather.",
+            "value": ""
+        },
+        "admin": {
+            "description": "ايدي حسابك الاساسي .",
+            "value": ""
+        }
+    },
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        },
+        {
+            "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
+        }
+    ]
+}
