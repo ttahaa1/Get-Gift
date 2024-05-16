@@ -1,10 +1,38 @@
-﻿import os
+import os
+from telethon.sessions import StringSession
+import asyncio, re, json, shutil
+from kvsqlite.sync import Client as uu
+from telethon.tl.types import KeyboardButtonUrl
+from telethon.tl.types import KeyboardButton, ReplyInlineMarkup
+from telethon import TelegramClient, events, functions, types, Button
+from telethon.tl.types import DocumentAttributeFilename
+import time, datetime, random 
+from datetime import timedelta
+from telethon.errors import (
+    ApiIdInvalidError,
+    PhoneNumberInvalidError,
+    PhoneCodeInvalidError,
+    PhoneCodeExpiredError,
+    SessionPasswordNeededError,
+    PasswordHashInvalidError
+)
+from plugins.messages import *
+from plugins.get_gift import *
+
+with open('config.json', 'r') as config_file:
+    config = json.load(config_file)
+
+API_ID = config.get("API_ID", "")
+API_HASH = config.get("API_HASH", "")
+admin = config.get("admin", "")
+token = config.get("token", "")
+
 try:
     from telethon.sessions import StringSession
     import asyncio, re, json, shutil
     from kvsqlite.sync import Client as uu
     from telethon.tl.types import KeyboardButtonUrl
-    from telethon.tl.types import KeyboardButton, ReplyInlineMarkup
+    from telethon.tl.types import KeyboardButton
     from telethon import TelegramClient, events, functions, types, Button
     from telethon.tl.types import DocumentAttributeFilename
     import time, datetime, random 
@@ -45,20 +73,15 @@ except:
         print('An Erorr with: ' + str(errors))
         exit(0)
 
-        
+# Check if 'database' directory exists, create if not
 if not os.path.isdir('database'):
     os.mkdir('database')
 
-API_ID = "22665066"
-API_HASH = "92dbe89d182f72f427972d8993850130"
-admin = -5705487207
-
-# Replace with your bot token
-token = "6722241854:AAHPTxa4kUkWECdTBZKQJnqS7W7oKfz6anM"
+# Create Telegram client
 client = TelegramClient('BotSession', API_ID, API_HASH).start(bot_token=token)
 bot = client
 
-#Create DataBase
+# Create database
 db = uu('database/elhakem.ss', 'bot')
 
 if not db.exists("accounts"):
